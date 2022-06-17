@@ -1,5 +1,4 @@
 # Competitive Programming in Haskell
------
 
 Haskell is a fun language, but out of the box most of the base library is
 hidden.  This means the single-file programs written in Competitive Programming
@@ -14,7 +13,6 @@ But no more! My new technique is to abuse the `CPP` pragma to `#include`
 boilerplate code. Disgusting, yes, but it gets the job done.
 
 ## Project Structure
------
 
 For our purposes, a "project" is a set of CP solutions. Here's the file
 structure, showing the solutions to two problems from CodeChef's START43
