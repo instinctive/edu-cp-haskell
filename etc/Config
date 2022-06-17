@@ -1,0 +1,67 @@
+-- Dhall script to generate '.cabal' files for CodeChef solutions.
+
+let etc = "./etc"
+
+let List/map    = https://prelude.dhall-lang.org/List/map
+let Text/concat = https://prelude.dhall-lang.org/Text/concat
+
+let cabal-prefix =
+  ''
+  cabal-version: 3.0
+  name: Solutions
+  version: 1.0.0.0
+  -- common {{{
+  -- vim: foldmethod=marker
+  -- DO NOT EDIT this auto-generated file.
+
+  common shared
+    default-language: Haskell2010
+    ghc-options: -O +RTS -V0 -RTS -rtsopts -I${etc} -F -pgmF ${etc}/out.sh
+    default-extensions: CPP
+    hs-source-dirs: src
+    build-depends: base
+     , array
+     , bytestring
+     , containers
+     , mtl
+     , text
+  ''
+
+let make-exe = \(name : Text) ->
+  ''
+
+  executable ${name} -- {{{1
+    import: shared
+    main-is: ${name}.hs
+  ''
+
+let make-cabal = \(names : List Text) ->
+  let exes = Text/concat (List/map Text Text make-exe names)
+  in cabal-prefix ++ exes
+
+let tests-prefix =
+  ''
+  #!/usr/bin/env bash
+  # DO NOT EDIT this auto-generated file.
+  echo "Testing..."
+  ''
+
+let make-test = \(name : Text) ->
+  ''
+  # ---------- Test for ${name} ----------
+  rm -f test/${name}.t
+  cabal run ${name} -v0 < test/${name}.i > test/${name}.t
+  if ! diff test/${name}.o test/${name}.t; then
+      echo "Failed: ${name}"
+  else
+      echo "OK: ${name}"
+  fi
+  ''
+
+let make-tests = \(names : List Text) ->
+  let tests = Text/concat (List/map Text Text make-test names)
+  in tests-prefix ++ tests
+
+in \(names : List Text) ->
+    { cabal = make-cabal names
+    , tests = make-tests names }

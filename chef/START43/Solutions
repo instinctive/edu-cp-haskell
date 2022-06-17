@@ -1,0 +1,6 @@
+let solutions = 
+    [ "lmine"
+    , "dispal"
+    , "permand"
+    ]
+in ./etc/Config solutions

@@ -1,0 +1,4 @@
+**/out/
+**/test/*.t
+.tests
+Solutions.cabal
