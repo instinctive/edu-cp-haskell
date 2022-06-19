@@ -1,0 +1,8 @@
+let solutions = 
+    [ "zooz"
+    , "eqbyxor"
+    , "lostarray_"
+    , "maxcycshift"
+    , "xorxorsum"
+    ]
+in ./etc/Config solutions
