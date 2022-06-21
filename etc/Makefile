@@ -1,12 +1,12 @@
 .PHONY: build test clean
 
+build: Solutions.cabal
+	@cabal build -j4 -v0
+
 test: build
 	@dhall text <<< "(./Solutions).tests" > .tests
 	@chmod +x .tests
 	@./.tests
-
-build: Solutions.cabal
-	@cabal build -j4 -v0
 
 clean: Solutions.cabal
 	@cabal clean
