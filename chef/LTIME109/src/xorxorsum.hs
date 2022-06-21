@@ -1,6 +1,10 @@
 #include "include/prelude.hs"
 
-main = docase -- getInt >>= flip replicateM_ docase
+main = 
+    hPutStrLn stderr "TEST VERSION: xorxorsum" >> 
+    getInt >>= flip replicateM_ docase
+
+-- main = docase -- SUBMISSION VERSION
 
 docase = do
     [n] <- getInts
