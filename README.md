@@ -65,7 +65,7 @@ will be available. The `Makefile` will also take care of the testing.
 
 ```
 $ cd chef/START43
-$ make
+$ make test
 Testing...
 OK: dispal
 OK: permand
