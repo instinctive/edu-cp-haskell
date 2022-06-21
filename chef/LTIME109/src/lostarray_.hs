@@ -10,5 +10,5 @@ docase = do
 solve n bb =
     xor a <$> aa
   where
-    allxor = foldl' xor 0 bb
-    a:aa = sort $ (xor allxor) <$> bb
+    q = foldl' xor 0 bb
+    a:aa = sort $ xor q <$> bb
