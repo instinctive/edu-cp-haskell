@@ -29,6 +29,7 @@ import Data.Ord
 import Data.Traversable
 import Data.Tuple
 import Debug.Trace
+import System.IO
 import Text.Printf
 import qualified Data.ByteString.Char8 as C
 import qualified Data.IntMap.Strict    as IM
